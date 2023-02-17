@@ -17,6 +17,7 @@ def count_calls(method: Callable) -> Callable:
         return method(self, *args, **kwargs)
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """This stores the history of inputs and outputs for a
     particular function"""
@@ -29,6 +30,7 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(method.__qualname__ + ":outputs", output)
         return output
     return wrapper
+
 
 def replay(fn: Callable):
     '''This displays the history of calls to a function'''
